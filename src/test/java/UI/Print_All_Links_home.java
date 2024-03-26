@@ -117,13 +117,11 @@ public class Print_All_Links_home {
 		driver.get(homePageUrl); // Navigate back to the home page
 
 		// .....................Tutorials.................................
-
 		// Locate the dropdown menu and click on it to expand it
-		WebElement dropdown = driver.findElement(By.cssSelector("#dropdown-community"));
-		dropdown.click();
+		dropdown2.click();
 
 		// Locate the Drawifiers within the dropdown and click on it
-		WebElement specificOptionD2O2 = driver.findElement(By.xpath("//*[@id=\"navbarCollapse\"]/ul/li[5]/div/a[1]"));
+		WebElement specificOptionD2O2 = driver.findElement(By.xpath("//*[@id=\"navbarCollapse\"]/ul/li[5]/div/a[2]"));
 		specificOptionD2O2.click();
 
 		// Get the current URL of the page after navigating
@@ -131,7 +129,31 @@ public class Print_All_Links_home {
 		System.out.println("Current URL after navigating: " + currentUrl16);
 		driver.get(homePageUrl); // Navigate back to the home page
 
-//		
+		// .....................ebook.................................
+
+		// Locate the dropdown menu and click on it to expand it
+
+		dropdown2.click();
+		// Locate the Drawifiers within the dropdown and click on it
+		WebElement specificOptionD2O3 = driver.findElement(By.xpath("//*[@id=\"navbarCollapse\"]/ul/li[5]/div/a[3]"));
+		specificOptionD2O3.click();
+		// Get the current URL of the page after navigating
+		String currentUrl17 = driver.getCurrentUrl();
+		System.out.println("Current URL after navigating: " + currentUrl17);
+		driver.get(homePageUrl); // Navigate back to the home page
+
+		// ...........Support.................................
+		driver.findElement(By.xpath("//*[@id=\"navbarCollapse\"]/ul/li[6]/a")).click();
+		String currentUrl8 = driver.getCurrentUrl();
+		System.out.println("Current URL after navigating: " + currentUrl8);
+		driver.get(homePageUrl); // Navigate back to the home page
+
+		// ...........Support.................................
+		driver.findElement(By.xpath("//*[@id=\"navbarCollapse\"]/ul/li[7]/a")).click();
+		String currentUrl9 = driver.getCurrentUrl();
+		System.out.println("Current URL after navigating: " + currentUrl9);
+		driver.get(homePageUrl); // Navigate back to the home page
+
 //
 //		// ...........Academy.................................
 //		// .....................Drawifiers.................................
