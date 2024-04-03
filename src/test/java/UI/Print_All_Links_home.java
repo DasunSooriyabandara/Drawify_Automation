@@ -99,12 +99,14 @@ public class Print_All_Links_home {
 		String currentUrl4 = driver.getCurrentUrl();
 		System.out.println("Current URL after navigating: " + currentUrl4);
 		driver.get(homePageUrl); // Navigate back to the home page
+		
+		
 
 		// ...........Academy.................................
 		// .....................Webinars.................................
 
 		// Locate the dropdown menu and click on it to expand it
-		WebElement dropdown2 = driver.findElement(By.cssSelector("#dropdown-community"));
+		WebElement dropdown2 = driver.findElement(By.id("dropdown-community"));
 		dropdown2.click();
 
 		// Locate the Drawifiers within the dropdown and click on it
@@ -118,7 +120,8 @@ public class Print_All_Links_home {
 
 		// .....................Tutorials.................................
 		// Locate the dropdown menu and click on it to expand it
-		dropdown2.click();
+		WebElement dropdown2o1 = driver.findElement(By.id("dropdown-community"));
+		dropdown2o1.click();
 
 		// Locate the Drawifiers within the dropdown and click on it
 		WebElement specificOptionD2O2 = driver.findElement(By.xpath("//*[@id=\"navbarCollapse\"]/ul/li[5]/div/a[2]"));
@@ -130,10 +133,10 @@ public class Print_All_Links_home {
 		driver.get(homePageUrl); // Navigate back to the home page
 
 		// .....................ebook.................................
-
 		// Locate the dropdown menu and click on it to expand it
+		WebElement dropdown2o3 = driver.findElement(By.id("dropdown-community"));
+		dropdown2o1.click();
 
-		dropdown2.click();
 		// Locate the Drawifiers within the dropdown and click on it
 		WebElement specificOptionD2O3 = driver.findElement(By.xpath("//*[@id=\"navbarCollapse\"]/ul/li[5]/div/a[3]"));
 		specificOptionD2O3.click();
@@ -141,6 +144,9 @@ public class Print_All_Links_home {
 		String currentUrl17 = driver.getCurrentUrl();
 		System.out.println("Current URL after navigating: " + currentUrl17);
 		driver.get(homePageUrl); // Navigate back to the home page
+		
+		
+		
 
 		// ...........Support.................................
 		driver.findElement(By.xpath("//*[@id=\"navbarCollapse\"]/ul/li[6]/a")).click();
@@ -148,7 +154,7 @@ public class Print_All_Links_home {
 		System.out.println("Current URL after navigating: " + currentUrl8);
 		driver.get(homePageUrl); // Navigate back to the home page
 
-		// ...........Support.................................
+		// ...........Services.................................
 		driver.findElement(By.xpath("//*[@id=\"navbarCollapse\"]/ul/li[7]/a")).click();
 		String currentUrl9 = driver.getCurrentUrl();
 		System.out.println("Current URL after navigating: " + currentUrl9);
