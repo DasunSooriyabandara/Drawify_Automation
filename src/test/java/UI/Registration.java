@@ -1,67 +1,55 @@
 package UI;
 
-import java.util.List;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeDriverService;
-import org.openqa.selenium.edge.EdgeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class Registration {
 
-	public static String browser = "chrome"; // External configuration
-	public static WebDriver driver;
+    public static void main(String[] args) {
+        // Setup WebDriver
+        WebDriverManager.chromedriver().setup();
+        WebDriver driver = new ChromeDriver();
 
-	public static void main(String[] args) throws InterruptedException {
-		if (browser.equals("firefox")) {
-			WebDriverManager.firefoxdriver().setup();
-			driver = new FirefoxDriver();
-		} else if (browser.equals("chrome")) {
-			WebDriverManager.chromedriver().setup();
-			driver = new ChromeDriver();
-		} else if (browser.equals("edge")) {
-			WebDriverManager.edgedriver().setup();
-			driver = new EdgeDriver();
-		}
+        // Open Temp-Mail website
+        driver.get("https://temp-mail.org/en/");
 
-		// Open Drawify website
-		driver.get("https://temp-mail.org/en/");
+        // Maximize the browser window
+        driver.manage().window().maximize();
 
-		// Store the home page URL
-		String homePageUrl = driver.getCurrentUrl();
+        // Find and click the button to copy the email address to clipboard
+        WebElement copyButton = driver.findElement(By.xpath("//*[@id=\"click-to-copy\"]"));
+        copyButton.click();
 
-		// Manage
-		driver.manage().window().maximize();
+        // Open a new browser window for the destination page
+        WebDriver destinationDriver = new ChromeDriver();
 
-		WebElement contentToCopy = driver.findElement(By.id("click-to-copy"));
+        // Open the destination page and maximize the window
+        destinationDriver.get("https://drawify.com/auth/register");
+        destinationDriver.manage().window().maximize();
 
-		// Initialize second WebDriver for destination browser
-		WebDriver destinationDriver = new ChromeDriver();
+        // Wait for the email input field to be visible
+        Wait<WebDriver> wait = new FluentWait<>(destinationDriver)
+                .withTimeout(Duration.ofSeconds(30))
+                .pollingEvery(Duration.ofSeconds(2))
+                .ignoring(Exception.class);
+        
+        WebElement emailInput = wait.until(drvr -> drvr.findElement(By.xpath("//*[@id=\"email\"]")));
 
-		// Open the destination browser window and navigate to the target page
-		destinationDriver.get("https://drawify.com/auth/register");
+        // Paste the email address from clipboard into the email input field
+        emailInput.sendKeys(Keys.chord(Keys.CONTROL, "v"));
 
-		// Manage
-		driver.manage().window().maximize();
-
-		// Locate the element where you want to paste the content
-		WebElement pasteElement = destinationDriver.findElement(By.xpath("//*[@id=\"email\"]"));
-
-		// Use Actions class to paste the copied content
-		Actions actions = new Actions(destinationDriver);
-		actions.moveToElement(pasteElement).click().sendKeys(Keys.CONTROL + "v") // Press CTRL + V to paste
-				.build().perform();
-
-		// Quit browser
-		driver.quit();
-	}
+        // Quit browsers
+//        driver.quit();
+//        destinationDriver.quit();
+    }
 }
