@@ -43,6 +43,9 @@ public class Registration {
 
 		WebElement emailInput = wait.until(drvr -> drvr.findElement(By.xpath("//*[@id=\"email\"]")));
 
+		// Click cookies accept popup
+		driver.findElement(By.xpath("/html/body/div[1]/div")).click();
+
 		// Paste the email address from clipboard into the email input field
 		emailInput.sendKeys(Keys.chord(Keys.CONTROL, "v"));
 
@@ -52,9 +55,7 @@ public class Registration {
 		System.out.println("Email pasted: " + email);
 
 		// -----------------------------------------------------------------------------------------------------------------
-		driver.findElement(By.xpath("//*[@id=\"password\"]")).sendKeys("1234");
-		
-		
+
 		// Store the password value in a variable
 		String password = "abcd1234";
 
@@ -63,42 +64,44 @@ public class Registration {
 		passwordInput.sendKeys(password);
 
 		// Print the value being sent using sendKeys
-		System.out.println("Weak Password sent: " + password);
+		System.out.println("Display message for Weak Password sent: " + password);
 
 		// Show password
-		driver.findElement(By.className("input-icon-toggle")).click();
+		driver.findElement(By.xpath("//*[@id=\"register-from\"]/div[4]/div/button")).click();
+
+		driver.findElement(By.xpath("//*[@id=\"email\"]")).sendKeys("Dasuntest@gmai.com");
+		// Clikc sign up button
+		driver.findElement(By.xpath("//*[@id=\"register-from\"]/div[6]/div[1]/button")).click();
+
+		// Enter First NAme
+		driver.findElement(By.xpath("//*[@id=\"first-name\"]")).sendKeys("Autumation Testing");
+
+		// Enter Last NAme
+		driver.findElement(By.xpath("//*[@id=\"last-name\"]")).sendKeys("Dasun");
+
+		// Email
+		System.out.println("Temp MAil Emai address :" + email);
+
+		// Enter strong password
+		String spassword = "Test@2023";
+
+		WebElement spasswordInput = driver.findElement(By.id("password"));
+		spasswordInput.sendKeys(spassword);
+
+		// Print the value being sent using sendKeys
+		System.out.println("SUccessfully registerdd forr Strong Password : " + spassword);
 
 		// Clikc sign up button
-		driver.findElement(By.cssSelector("#register-from > div:nth-child(7) > div:nth-child(1) > button")).click();
+		driver.findElement(By.xpath("//*[@id=\"register-from\"]/div[6]/div[1]/button/div")).click();
 
-//		// Enter First NAme
-//		driver.findElement(By.xpath("//*[@id=\"first-name\"]")).sendKeys("Autumation Testing");
-//
-//		// Enter Last NAme
-//		driver.findElement(By.xpath("//*[@id=\"last-name\"]")).sendKeys("Dasun");
-//
-//		// Email
-//		System.out.println("Emai :" + email);
-//
-//		// Enter strong password
-//		String spassword = "Test@2023";
-//
-//		WebElement spasswordInput = driver.findElement(By.xpath("//*[@id=\"password\"]"));
-//		passwordInput.sendKeys(password);
-//
-//		// Print the value being sent using sendKeys
-//		System.out.println("Strong Password : " + password);
-//
-//		// Clikc sign up button
-//		driver.findElement(By.xpath("//*[@id=\"register-from\"]/div[6]/div[1]/button/div")).click();
-//
-//		// Terms and conditions checkbox
-//		driver.findElement(By.xpath("//*[@id=\"register-from\"]/div[5]/div/div/label")).click();
-//
-//		// Clikc sign up button
-//		driver.findElement(By.xpath("//*[@id=\"register-from\"]/div[6]/div[1]/button/div")).click();
-//
-//		System.out.println("sign up button clicked and successfully load auth page");
+		// Terms and conditions checkbox
+		driver.findElement(By.xpath("//*[@id=\"terms-conditions\"]")).click();
+
+		// Clikc sign up button
+		driver.findElement(By.xpath("//*[@id=\"register-from\"]/div[6]/div[1]/button/div")).click();
+
+		System.out.println(
+				"sign up button clicked and successfully load auth page and send verification link to the email");
 
 		// Quit browsers
 //        driver.quit();
