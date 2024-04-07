@@ -1,12 +1,15 @@
 package UI;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
@@ -14,7 +17,7 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class testRegone {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         // Setup WebDriver for Temp-Mail website
         WebDriverManager.chromedriver().setup();
         WebDriver tempMailDriver = new ChromeDriver();
@@ -84,7 +87,6 @@ public class testRegone {
 
         // Click sign up button
         destinationDriver.findElement(By.xpath("//*[@id=\"register-from\"]/div[6]/div[1]/button/div")).click();
-
         // Terms and conditions checkbox
         destinationDriver.findElement(By.xpath("//*[@id=\"terms-conditions\"]")).click();
 
@@ -93,7 +95,36 @@ public class testRegone {
 
         System.out.println("Sign up button clicked and successfully loaded auth page and "
                             + "sent verification link to the email");
+        
+        destinationDriver.manage().window().minimize();
+        //---------------------------------------------------------
+                
+//     // Wait for the email input field to be visible
+//        WebDriverWait wait1 = new WebDriverWait( tempMailDriver, 30);
+//        WebElement emailInput1 = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.id("mail")));
 
+        
+     // SCROLL & Find the element using its xpath
+        WebElement scrollElement1 = tempMailDriver.findElement(By.xpath("//*[@id=\"tm-body\"]/main/div[1]/div/div[2]/div[2]/div/div[1]/div/div[4]"));
+        
+        
+        // SCROLL the element into view
+        ((JavascriptExecutor) tempMailDriver).executeScript("arguments[0].scrollIntoView();", scrollElement1);
+
+        // Click on arrow to expand the mail
+        WebElement clickButton = tempMailDriver.findElement(By.xpath("//*[@id=\"tm-body\"]/main/div[1]/div/div[2]/div[2]/div/div[1]/div/div[4]/ul/li[2]/div[3]/div[2]/a"));
+        clickButton.click();
+        
+        ////*[@id="tm-body"]/main/div[1]/div/div[2]/div[2]/div/div[1]/div/div[4]/ul/li[2]/div[1]
+        
+        // SCROLL & Find the element using its xpath
+        WebElement scrollElement2 = tempMailDriver.findElement(By.xpath("//*[@id=\"tm-body\"]/main/div[1]/div/div[2]/div[2]/div/div[1]/div/div[2]/div[3]/center/table/tbody/tr/td/table/tbody/tr[2]/td/table/tbody/tr/td/table[2]/tbody/tr/td/table/tbody"));
+
+        // SCROLL the element into view
+        ((JavascriptExecutor) tempMailDriver).executeScript("arguments[0].scrollIntoView();", scrollElement2);
+
+        
+        System.out.println("mail open");
         // Quit drivers
 //        tempMailDriver.quit();
 //        destinationDriver.quit();
