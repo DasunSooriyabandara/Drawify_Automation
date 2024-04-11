@@ -89,7 +89,7 @@ public class Registration {
         System.out.println("Sign up button clicked and successfully loaded auth page and "
                 + "sent verification link to the email");
 
-        destinationDriver.manage().window().maximize();
+        destinationDriver.manage().window().minimize();
 
         // Setup WebDriver for mailtrap after verification mail send page
 //        WebDriver verificationDriver = new ChromeDriver();
@@ -97,16 +97,33 @@ public class Registration {
 //        verificationDriver.manage().window().maximize();
 
         // Scroll vertically by 500 pixels
-        String script = "window.scrollBy(0,700);";
+        String script = "window.scrollBy(0,300);";
         ((JavascriptExecutor) tempMailDriver).executeScript(script);
 
+        
+        System.out.println("heloooo 1 ");
+        
         // Wait for the email input field to be visible
-        WebDriverWait wait1 = new WebDriverWait(tempMailDriver, Duration.ofSeconds(10));
-        WebElement emailInput1 = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.className("viewLink")));
-
+//        WebDriverWait wait1 = new WebDriverWait(tempMailDriver, Duration.ofSeconds(30));
+//        WebElement emailInput1 = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#tm-body > main > div:nth-child(1) > div > div.col-sm-12.col-md-12.col-lg-12.col-xl-8 > div.tm-content > div > div.inboxWarpMain > div > div.inbox-dataList > ul > li:nth-child(2) > div:nth-child(3) > div.m-link-view")));
+//        		
         // Click on the expanded email
-        emailInput1.click();
-
+//        emailInput1.click();
+        System.out.println("heloooo 2 ");
+        Thread.sleep(5000);
+  //-------------------------------------------------------------      
+        WebElement emailSubjectElement = tempMailDriver.findElement(By.xpath("//*[@id=\"tm-body\"]/main/div[1]/div/div[2]/div[2]/div/div[1]/div/div[4]/ul/li[2]/div[3]/div[2]/a"));
+        Thread.sleep(5000);
+        emailSubjectElement.click();
+        
+        System.out.println("heloooo 3 ");
+        
+     // Example: Extracting the email content
+        WebElement emailContentElement = tempMailDriver.findElement(By.xpath("//div[@class='col box']"));
+        String emailContent = emailContentElement.getText();
+        System.out.println("Email Content: " + emailContent);
+        
+  //---------------------------------------------------------------      
         // Click on the verification link
         tempMailDriver.findElement(By.xpath("//*[@id=\"tm-body\"]/main/div[1]/div/div[2]/div[2]/div/div[1]/div/div[2]/div[3]/center/table/tbody/tr/td/table/tbody/tr[2]/td/table/tbody/tr/td/table[2]/tbody/tr/td/table/tbody/tr/td/a")).click();
 
@@ -115,6 +132,5 @@ public class Registration {
         // Quit drivers
         tempMailDriver.quit();
         destinationDriver.quit();
-        tempMailDriver.quit();
     }
 }

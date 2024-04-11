@@ -30,7 +30,7 @@ public class Print_All_Links_home {
 		}
 
 		// Open Drawify website
-		driver.get("https://drawify.com/");
+		driver.get("https://beta.drawify.com/home");
 
 		// Store the home page URL
 		String homePageUrl = driver.getCurrentUrl();
@@ -56,109 +56,131 @@ public class Print_All_Links_home {
 		driver.findElement(By.xpath("//*[@id=\"navbarCollapse\"]/ul/li[1]/a")).click();
 		String currentUrl = driver.getCurrentUrl();
 		System.out.println("Current URL after navigating: " + currentUrl);
-		driver.get(homePageUrl); // Navigate back to the home page
 
-		// ...........Community.................................
-		// .....................Drawifiers.................................
+		// driver.findElement(By.xpath("//*[@id=\"wrap\"]/div[2]/div[2]/div/p/a[10]")).click();
+		Thread.sleep(5000);
 
-		// Locate the dropdown menu and click on it to expand it
-		WebElement dropdown1 = driver.findElement(By.xpath("//*[@id=\"dropdown-community\"]"));
-		dropdown1.click();
+		WebElement Featuredemp = driver.findElement(By.xpath("//*[@id=\"wrap\"]/div[2]/div[3]/div/h2"));
+		System.out.println(Featuredemp.getText());
 
-		// Locate the Drawifiers within the dropdown and click on it
-		WebElement specificOption = driver.findElement(By.xpath("//*[@id=\"navbarCollapse\"]/ul/li[2]/div/a[1]"));
-		specificOption.click();
+		List<WebElement> alltags = driver.findElements(By.tagName("h5"));
+		System.out.println("Number of Templateon the page" + alltags.size());
 
-		// Get the current URL of the page after navigating
-		String currentUrl1 = driver.getCurrentUrl();
-		System.out.println("Current URL after navigating: " + currentUrl1);
-		driver.get(homePageUrl); // Navigate back to the home page
+		for (int i = 0; i < alltags.size(); i++) {
+			// System.out.println("Links on the page" +
+			// alltags.get(i).getAttribute("href"));
+			System.out.println("First Template Name " + alltags.get(i).getText());
+			System.out.println("------------------------------------");
 
-		// .....................Become a Drawifier.................................
-		// Locate the dropdown menu and click on it to expand it
-		WebElement dropdownopt2 = driver.findElement(By.xpath("//*[@id=\"dropdown-community\"]"));
-		dropdownopt2.click();
+			// Preview button
+			driver.findElement(By.xpath("//*[@id=\"template-model-info\"]")).click();
+			// Details button
+			driver.findElement(By.xpath("//*[@id=\"template-model-info\"]")).click();
+			driver.navigate().back();
+			driver.findElement(By.xpath("//*[@id=\"modalPreview\"]/div/div/div[1]/button")).click();
+			// *[@id="modalPreview"]/div/div/div[1]/button
 
-		// Locate the Drawifiers within the dropdown and click on it
-		WebElement specificOption2 = driver.findElement(By.xpath("//*[@id=\"navbarCollapse\"]/ul/li[2]/div/a[2]"));
-		specificOption2.click();
+			driver.get(homePageUrl); // Navigate back to the home page
 
-		// Get the current URL of the page after navigating
-		String currentUrl11 = driver.getCurrentUrl();
-		System.out.println("Current URL after navigating: " + currentUrl11);
-		driver.get(homePageUrl); // Navigate back to the home page
+			// ...........Community.................................
+			// .....................Drawifiers.................................
 
-		// ...........Pricing.................................
-		driver.findElement(By.xpath("//*[@id=\"navbarCollapse\"]/ul/li[3]/a")).click();
-		String currentUrl3 = driver.getCurrentUrl();
-		System.out.println("Current URL after navigating: " + currentUrl3);
-		driver.get(homePageUrl); // Navigate back to the home page
+			// Locate the dropdown menu and click on it to expand it
+			WebElement dropdown1 = driver.findElement(By.xpath("//*[@id=\"dropdown-community\"]"));
+			dropdown1.click();
 
-		// ...........Blog.................................
-		driver.findElement(By.xpath("//*[@id=\"navbarCollapse\"]/ul/li[4]/a")).click();
-		String currentUrl4 = driver.getCurrentUrl();
-		System.out.println("Current URL after navigating: " + currentUrl4);
-		driver.get(homePageUrl); // Navigate back to the home page
-		
-		
+			// Locate the Drawifiers within the dropdown and click on it
+			WebElement specificOption = driver.findElement(By.xpath("//*[@id=\"navbarCollapse\"]/ul/li[2]/div/a[1]"));
+			specificOption.click();
 
-		// ...........Academy.................................
-		// .....................Webinars.................................
+			// Get the current URL of the page after navigating
+			String currentUrl1 = driver.getCurrentUrl();
+			System.out.println("Current URL after navigating: " + currentUrl1);
+			driver.get(homePageUrl); // Navigate back to the home page
 
-		// Locate the dropdown menu and click on it to expand it
-		WebElement dropdown2 = driver.findElement(By.id("dropdown-community"));
-		dropdown2.click();
+			// .....................Become a Drawifier.................................
+			// Locate the dropdown menu and click on it to expand it
+			WebElement dropdownopt2 = driver.findElement(By.xpath("//*[@id=\"dropdown-community\"]"));
+			dropdownopt2.click();
 
-		// Locate the Drawifiers within the dropdown and click on it
-		WebElement specificOptionD2o1 = driver.findElement(By.xpath("//*[@id=\"navbarCollapse\"]/ul/li[5]/div/a[1]"));
-		specificOptionD2o1.click();
+			// Locate the Drawifiers within the dropdown and click on it
+			WebElement specificOption2 = driver.findElement(By.xpath("//*[@id=\"navbarCollapse\"]/ul/li[2]/div/a[2]"));
+			specificOption2.click();
 
-		// Get the current URL of the page after navigating
-		String currentUrl15 = driver.getCurrentUrl();
-		System.out.println("Current URL after navigating: " + currentUrl15);
-		driver.get(homePageUrl); // Navigate back to the home page
+			// Get the current URL of the page after navigating
+			String currentUrl11 = driver.getCurrentUrl();
+			System.out.println("Current URL after navigating: " + currentUrl11);
+			driver.get(homePageUrl); // Navigate back to the home page
 
-		// .....................Tutorials.................................
-		// Locate the dropdown menu and click on it to expand it
-		WebElement dropdown2o1 = driver.findElement(By.id("dropdown-community"));
-		dropdown2o1.click();
+			// ...........Pricing.................................
+			driver.findElement(By.xpath("//*[@id=\"navbarCollapse\"]/ul/li[3]/a")).click();
+			String currentUrl3 = driver.getCurrentUrl();
+			System.out.println("Current URL after navigating: " + currentUrl3);
+			driver.get(homePageUrl); // Navigate back to the home page
 
-		// Locate the Drawifiers within the dropdown and click on it
-		WebElement specificOptionD2O2 = driver.findElement(By.xpath("//*[@id=\"navbarCollapse\"]/ul/li[5]/div/a[2]"));
-		specificOptionD2O2.click();
+			// ...........Blog.................................
+			driver.findElement(By.xpath("//*[@id=\"navbarCollapse\"]/ul/li[4]/a")).click();
+			String currentUrl4 = driver.getCurrentUrl();
+			System.out.println("Current URL after navigating: " + currentUrl4);
+			driver.get(homePageUrl); // Navigate back to the home page
 
-		// Get the current URL of the page after navigating
-		String currentUrl16 = driver.getCurrentUrl();
-		System.out.println("Current URL after navigating: " + currentUrl16);
-		driver.get(homePageUrl); // Navigate back to the home page
+			// ...........Academy.................................
+			// .....................Webinars.................................
 
-		// .....................ebook.................................
-		// Locate the dropdown menu and click on it to expand it
-		WebElement dropdown2o3 = driver.findElement(By.id("dropdown-community"));
-		dropdown2o1.click();
+			// Locate the dropdown menu and click on it to expand it
+			WebElement dropdown2 = driver.findElement(By.id("dropdown-community"));
+			dropdown2.click();
 
-		// Locate the Drawifiers within the dropdown and click on it
-		WebElement specificOptionD2O3 = driver.findElement(By.xpath("//*[@id=\"navbarCollapse\"]/ul/li[5]/div/a[3]"));
-		specificOptionD2O3.click();
-		// Get the current URL of the page after navigating
-		String currentUrl17 = driver.getCurrentUrl();
-		System.out.println("Current URL after navigating: " + currentUrl17);
-		driver.get(homePageUrl); // Navigate back to the home page
-		
-		
-		
+			// Locate the Drawifiers within the dropdown and click on it
+			WebElement specificOptionD2o1 = driver
+					.findElement(By.xpath("//*[@id=\"navbarCollapse\"]/ul/li[5]/div/a[1]"));
+			specificOptionD2o1.click();
 
-		// ...........Support.................................
-		driver.findElement(By.xpath("//*[@id=\"navbarCollapse\"]/ul/li[6]/a")).click();
-		String currentUrl8 = driver.getCurrentUrl();
-		System.out.println("Current URL after navigating: " + currentUrl8);
-		driver.get(homePageUrl); // Navigate back to the home page
+			// Get the current URL of the page after navigating
+			String currentUrl15 = driver.getCurrentUrl();
+			System.out.println("Current URL after navigating: " + currentUrl15);
+			driver.get(homePageUrl); // Navigate back to the home page
 
-		// ...........Services.................................
-		driver.findElement(By.xpath("//*[@id=\"navbarCollapse\"]/ul/li[7]/a")).click();
-		String currentUrl9 = driver.getCurrentUrl();
-		System.out.println("Current URL after navigating: " + currentUrl9);
-		driver.get(homePageUrl); // Navigate back to the home page
+			// .....................Tutorials.................................
+			// Locate the dropdown menu and click on it to expand it
+			WebElement dropdown2o1 = driver.findElement(By.id("dropdown-community"));
+			dropdown2o1.click();
+
+			// Locate the Drawifiers within the dropdown and click on it
+			WebElement specificOptionD2O2 = driver
+					.findElement(By.xpath("//*[@id=\"navbarCollapse\"]/ul/li[5]/div/a[2]"));
+			specificOptionD2O2.click();
+
+			// Get the current URL of the page after navigating
+			String currentUrl16 = driver.getCurrentUrl();
+			System.out.println("Current URL after navigating: " + currentUrl16);
+			driver.get(homePageUrl); // Navigate back to the home page
+
+			// .....................ebook.................................
+			// Locate the dropdown menu and click on it to expand it
+			WebElement dropdown2o3 = driver.findElement(By.id("dropdown-community"));
+			dropdown2o1.click();
+
+			// Locate the Drawifiers within the dropdown and click on it
+			WebElement specificOptionD2O3 = driver
+					.findElement(By.xpath("//*[@id=\"navbarCollapse\"]/ul/li[5]/div/a[3]"));
+			specificOptionD2O3.click();
+			// Get the current URL of the page after navigating
+			String currentUrl17 = driver.getCurrentUrl();
+			System.out.println("Current URL after navigating: " + currentUrl17);
+			driver.get(homePageUrl); // Navigate back to the home page
+
+			// ...........Support.................................
+			driver.findElement(By.xpath("//*[@id=\"navbarCollapse\"]/ul/li[6]/a")).click();
+			String currentUrl8 = driver.getCurrentUrl();
+			System.out.println("Current URL after navigating: " + currentUrl8);
+			driver.get(homePageUrl); // Navigate back to the home page
+
+			// ...........Services.................................
+			driver.findElement(By.xpath("//*[@id=\"navbarCollapse\"]/ul/li[7]/a")).click();
+			String currentUrl9 = driver.getCurrentUrl();
+			System.out.println("Current URL after navigating: " + currentUrl9);
+			driver.get(homePageUrl); // Navigate back to the home page
 
 //
 //		// ...........Academy.................................
@@ -173,7 +195,8 @@ public class Print_All_Links_home {
 //		driver.findElement(By.id("btn-subscription")).click();
 //		System.out.println("All done");
 
-		// Quit browser
-		driver.quit();
+			// Quit browser
+			driver.quit();
+		}
 	}
 }
