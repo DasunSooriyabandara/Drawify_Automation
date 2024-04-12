@@ -39,7 +39,7 @@ public class Print_All_Links_home {
 		driver.manage().window().maximize();
 
 		// Accept cookies
-		// driver.findElement(By.xpath("/html/body/div[1]/div")).click();
+	  driver.findElement(By.xpath("/html/body/div[1]/div")).click();
 
 		// ............All links in the home page............
 //        List<WebElement> alltags = driver.findElements(By.tagName("a"));
@@ -62,25 +62,49 @@ public class Print_All_Links_home {
 
 		WebElement Featuredemp = driver.findElement(By.xpath("//*[@id=\"wrap\"]/div[2]/div[3]/div/h2"));
 		System.out.println(Featuredemp.getText());
+		
+		
+		
+		// Locate the templates container
+        WebElement templatesContainer = driver.findElement(By.className("card-deck"));
 
-		List<WebElement> alltags = driver.findElements(By.tagName("h5"));
-		System.out.println("Number of Templateon the page" + alltags.size());
+        // Find all template elements within the container
+        List<WebElement> templateElements = templatesContainer.findElements(By.className("card-body"));
 
-		for (int i = 0; i < alltags.size(); i++) {
-			// System.out.println("Links on the page" +
-			// alltags.get(i).getAttribute("href"));
-			System.out.println("First Template Name " + alltags.get(i).getText());
-			System.out.println("------------------------------------");
+        // Print the number of templates
+        System.out.println("Number of templates: " + templateElements.size());
+
+        // Print the names of the templates
+        for (WebElement template : templateElements) {
+            // Find the element containing the template name
+            WebElement nameElement = template.findElement(By.className("card-title"));
+            String templateName = nameElement.getText();
+            
+            // Find the element containing the template URL
+            WebElement urlElement = template.findElement(By.tagName("a"));
+            String templateURL = urlElement.getAttribute("href");
+
+            System.out.println("Template Name: " + templateName);
+            System.out.println("Template URL: " + templateURL);
+        }
+
+		
+
+		
+        
+        
 
 			// Preview button
-			driver.findElement(By.xpath("//*[@id=\"template-model-info\"]")).click();
+			driver.findElement(By.xpath("//*[@id=\"wrap\"]/div[2]/div[3]/div/div/div[2]/div/button")).click();
+			
 			// Details button
 			driver.findElement(By.xpath("//*[@id=\"template-model-info\"]")).click();
-			driver.navigate().back();
-			driver.findElement(By.xpath("//*[@id=\"modalPreview\"]/div/div/div[1]/button")).click();
-			// *[@id="modalPreview"]/div/div/div[1]/button
+			
+			//Click Customized button
+			driver.findElement(By.xpath("//*[@id=\"wrap\"]/div[2]/div/div[2]/div/div/a")).click();
+			System.out.println("Back to Home page because have to sign up or in");
 
-			driver.get(homePageUrl); // Navigate back to the home page
+			
 
 			// ...........Community.................................
 			// .....................Drawifiers.................................
@@ -199,4 +223,4 @@ public class Print_All_Links_home {
 			driver.quit();
 		}
 	}
-}
+
