@@ -110,12 +110,16 @@ public class Print_All_Links_home {
 		((JavascriptExecutor) driver).executeScript(script1);
 
 		// Locate the templates container
-		WebElement templatesContainer1 = pitchingsales.findElement(By.xpath("//*[@id=\"wrap\"]/div[2]/div[3]/div"));
+		WebElement templatesContainer1 = pitchingsales.findElement(By.xpath("//*[@id=\"wrap\"]/div[2]/div[3]"));
+		
 
 		System.out.println("Pitching and sales URL: " + pitchingsales.getCurrentUrl());
 
 		// Find all template elements within the container
 		List<WebElement> templateElements1 = templatesContainer1.findElements(By.className("card-body"));
+		
+		//List<WebElement> templateElements1 = templatesContainer1.findElements(By.xpath("//*[@id=\"wrap\"]/div[2]/div[3]/div/div[1]/div[1]"));
+		
 
 		// Print the number of templates
 		System.out.println("Number of templates: " + templateElements1.size());
@@ -156,7 +160,7 @@ public class Print_All_Links_home {
 		// Locate the templates container
 		WebElement templatesContainer11 = Meetings.findElement(By.xpath("//*[@id=\"wrap\"]/div[2]/div[3]/div"));
 
-		System.out.println("Pitching and sales URL: " + Meetings.getCurrentUrl());
+		System.out.println("Meetings URL: " + Meetings.getCurrentUrl());
 
 		// Find all template elements within the container
 		List<WebElement> templateElements11 = templatesContainer11.findElements(By.className("card-body"));
@@ -182,6 +186,53 @@ public class Print_All_Links_home {
 
 		// Close the WebDriver instance
 		Meetings.quit();
+		
+		
+		//-----------Strategy and planning----------------
+
+				WebDriverManager.chromedriver().setup();
+				WebDriver Strategyplanning = new ChromeDriver();
+				Strategyplanning.get("https://beta.drawify.com/templates/strategy-and-planning");
+				Strategyplanning.manage().window().maximize();
+
+				// Wait for the page to load
+				//Thread.sleep(6000);
+
+				// Scroll
+				String script111 = "window.scrollBy(0,300);";
+				((JavascriptExecutor) driver).executeScript(script111);
+
+				// Locate the templates container
+				WebElement templatesContainer111 = Strategyplanning.findElement(By.xpath("//*[@id=\"wrap\"]/div[2]/div[3]"));
+
+				System.out.println("Meetings URL: " + Strategyplanning.getCurrentUrl());
+
+				// Find all template elements within the container
+				List<WebElement> templateElements111 = templatesContainer111.findElements(By.className("card-body"));
+
+				// Print the number of templates
+				System.out.println("Number of templates: " + templateElements111.size());
+				System.out.println("-----------------------------------------------");
+
+				// Print the names and URLs of the templates
+				for (WebElement template : templateElements111) {
+					// Find the element containing the template name
+					WebElement nameElement = template.findElement(By.className("card-title"));
+					String templateName = nameElement.getText();
+
+					// Find the element containing the template URL
+					WebElement urlElement = template.findElement(By.tagName("a"));
+					String templateURL = urlElement.getAttribute("href");
+
+					System.out.println("Template Name: " + templateName);
+					System.out.println("Template URL: " + templateURL);
+					System.out.println("-----------------------------------------------");
+				}
+
+				// Close the WebDriver instance
+				Strategyplanning.quit();
+		
+		
 
 		// ...........Community.................................
 		// .....................Drawifiers.................................

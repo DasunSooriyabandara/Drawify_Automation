@@ -67,7 +67,7 @@ public class Registration {
         destinationDriver.findElement(By.xpath("//*[@id=\"first-name\"]")).sendKeys("Automation Testing");
 
         // Enter Last Name
-        destinationDriver.findElement(By.xpath("//*[@id=\"last-name\"]")).sendKeys("Dasun");
+        destinationDriver.findElement(By.xpath("//*[@id=\"last-name\"]")).sendKeys("a");
 
         // Enter strong password
         String strongPassword = "Test@2023";
