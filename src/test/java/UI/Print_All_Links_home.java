@@ -9,6 +9,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -103,7 +104,7 @@ public class Print_All_Links_home {
 		pitchingsales.manage().window().maximize();
 
 		// Wait for the page to load
-		Thread.sleep(6000);
+		Thread.sleep(2000);
 
 		// Scroll
 		String script1 = "window.scrollBy(0,300);";
@@ -151,7 +152,7 @@ public class Print_All_Links_home {
 		Meetings.manage().window().maximize();
 
 		// Wait for the page to load
-		//Thread.sleep(6000);
+		Thread.sleep(2000);
 
 		// Scroll
 		String script11 = "window.scrollBy(0,300);";
@@ -196,7 +197,7 @@ public class Print_All_Links_home {
 				Strategyplanning.manage().window().maximize();
 
 				// Wait for the page to load
-				//Thread.sleep(6000);
+				Thread.sleep(2000);
 
 				// Scroll
 				String script111 = "window.scrollBy(0,300);";
@@ -204,8 +205,10 @@ public class Print_All_Links_home {
 
 				// Locate the templates container
 				WebElement templatesContainer111 = Strategyplanning.findElement(By.xpath("//*[@id=\"wrap\"]/div[2]/div[3]"));
+				
+				
 
-				System.out.println("Meetings URL: " + Strategyplanning.getCurrentUrl());
+				System.out.println("Strategy and planning: " + Strategyplanning.getCurrentUrl());
 
 				// Find all template elements within the container
 				List<WebElement> templateElements111 = templatesContainer111.findElements(By.className("card-body"));
@@ -232,8 +235,289 @@ public class Print_All_Links_home {
 				// Close the WebDriver instance
 				Strategyplanning.quit();
 		
-		
+				
+				//-----------Research and design----------------
 
+				WebDriverManager.chromedriver().setup();
+				WebDriver Researchdesign = new ChromeDriver();
+				Researchdesign.get("https://beta.drawify.com/templates/research-and-design");
+				Researchdesign.manage().window().maximize();
+
+				// Wait for the page to load
+				Thread.sleep(2000);
+
+				// Scroll
+				String script1111 = "window.scrollBy(0,300);";
+				((JavascriptExecutor) driver).executeScript(script1111);
+
+				// Locate the templates container
+				WebElement templatesContainer1111 = Researchdesign.findElement(By.xpath("//*[@id=\"wrap\"]/div[2]/div[3]"));
+				
+				
+
+				System.out.println("Research and design: " + Researchdesign.getCurrentUrl());
+
+				// Find all template elements within the container
+				List<WebElement> templateElements1111 = templatesContainer1111.findElements(By.className("card-body"));
+
+				// Print the number of templates
+				System.out.println("Number of templates: " + templateElements1111.size());
+				System.out.println("-----------------------------------------------");
+
+				// Print the names and URLs of the templates
+				for (WebElement template : templateElements1111) {
+					// Find the element containing the template name
+					WebElement nameElement = template.findElement(By.className("card-title"));
+					String templateName = nameElement.getText();
+
+					// Find the element containing the template URL
+					WebElement urlElement = template.findElement(By.tagName("a"));
+					String templateURL = urlElement.getAttribute("href");
+
+					System.out.println("Template Name: " + templateName);
+					System.out.println("Template URL: " + templateURL);
+					System.out.println("-----------------------------------------------");
+				}
+
+				// Close the WebDriver instance
+				Researchdesign.quit();
+				
+				
+				//-----------Agile and teams----------------
+
+				WebDriverManager.chromedriver().setup();
+				WebDriver Agileteams = new ChromeDriver();
+				Agileteams.get("https://beta.drawify.com/templates/agile-and-teams");
+				Agileteams.manage().window().maximize();
+
+				// Wait for the page to load
+				Thread.sleep(2000);
+
+				// Scroll
+				String script11111 = "window.scrollBy(0,300);";
+				((JavascriptExecutor) driver).executeScript(script11111);
+
+				// Locate the templates container
+				WebElement templatesContainer11111 = Agileteams.findElement(By.xpath("//*[@id=\"wrap\"]/div[2]/div[3]"));
+				
+				
+
+				System.out.println("Agile and teams: " + Agileteams.getCurrentUrl());
+
+				// Find all template elements within the container
+				List<WebElement> templateElements11111 = templatesContainer11111.findElements(By.className("card-body"));
+
+				// Print the number of templates
+				System.out.println("Number of templates: " + templateElements11111.size());
+				System.out.println("-----------------------------------------------");
+
+				// Print the names and URLs of the templates
+				for (WebElement template : templateElements11111) {
+					// Find the element containing the template name
+					WebElement nameElement = template.findElement(By.className("card-title"));
+					String templateName = nameElement.getText();
+
+					// Find the element containing the template URL
+					WebElement urlElement = template.findElement(By.tagName("a"));
+					String templateURL = urlElement.getAttribute("href");
+
+					System.out.println("Template Name: " + templateName);
+					System.out.println("Template URL: " + templateURL);
+					System.out.println("-----------------------------------------------");
+				}
+
+				// Close the WebDriver instance
+				Agileteams.quit();
+				
+				
+				//-----------Infographics----------------
+
+				WebDriverManager.chromedriver().setup();
+				WebDriver Infographics = new ChromeDriver();
+				Infographics.get("https://beta.drawify.com/templates/infographics");
+				Infographics.manage().window().maximize();
+
+				// Wait for the page to load
+				Thread.sleep(2000);
+
+				// Scroll
+				String script111111 = "window.scrollBy(0,300);";
+				((JavascriptExecutor) driver).executeScript(script111111);
+
+				// Locate the templates container
+				WebElement templatesContainer111111 = Infographics.findElement(By.xpath("//*[@id=\"wrap\"]/div[2]/div[3]"));
+				
+				
+
+				System.out.println("Infographics: " + Infographics.getCurrentUrl());
+
+				// Find all template elements within the container
+				List<WebElement> templateElements111111 = templatesContainer111111.findElements(By.className("card-body"));
+
+				// Print the number of templates
+				System.out.println("Number of templates: " + templateElements111111.size());
+				System.out.println("-----------------------------------------------");
+
+				// Print the names and URLs of the templates
+				for (WebElement template : templateElements111111) {
+					// Find the element containing the template name
+					WebElement nameElement = template.findElement(By.className("card-title"));
+					String templateName = nameElement.getText();
+
+					// Find the element containing the template URL
+					WebElement urlElement = template.findElement(By.tagName("a"));
+					String templateURL = urlElement.getAttribute("href");
+
+					System.out.println("Template Name: " + templateName);
+					System.out.println("Template URL: " + templateURL);
+					System.out.println("-----------------------------------------------");
+				}
+
+				// Close the WebDriver instance
+				Infographics.quit();
+		
+				
+				//-----------Social media----------------
+
+				WebDriverManager.chromedriver().setup();
+				WebDriver Socialmedia = new ChromeDriver();
+				Socialmedia.get("https://beta.drawify.com/templates/social-media");
+				Socialmedia.manage().window().maximize();
+
+				// Wait for the page to load
+				Thread.sleep(2000);
+
+				// Scroll
+				String script1111111 = "window.scrollBy(0,300);";
+				((JavascriptExecutor) driver).executeScript(script1111111);
+
+				// Locate the templates container
+				WebElement templatesContainer1111111 = Socialmedia.findElement(By.xpath("//*[@id=\"wrap\"]/div[2]/div[3]"));
+				
+				
+
+				System.out.println("Social media: " + Socialmedia.getCurrentUrl());
+
+				// Find all template elements within the container
+				List<WebElement> templateElements1111111 = templatesContainer1111111.findElements(By.className("card-body"));
+
+				// Print the number of templates
+				System.out.println("Number of templates: " + templateElements1111111.size());
+				System.out.println("-----------------------------------------------");
+
+				// Print the names and URLs of the templates
+				for (WebElement template : templateElements1111111) {
+					// Find the element containing the template name
+					WebElement nameElement = template.findElement(By.className("card-title"));
+					String templateName = nameElement.getText();
+
+					// Find the element containing the template URL
+					WebElement urlElement = template.findElement(By.tagName("a"));
+					String templateURL = urlElement.getAttribute("href");
+
+					System.out.println("Template Name: " + templateName);
+					System.out.println("Template URL: " + templateURL);
+					System.out.println("-----------------------------------------------");
+				}
+
+				// Close the WebDriver instance
+				Socialmedia.quit();
+				
+				
+				//-----------Change and transformation----------------
+
+				WebDriverManager.chromedriver().setup();
+				WebDriver Changetransformation = new ChromeDriver();
+				Changetransformation.get("https://beta.drawify.com/templates/change-and-transformation");
+				Changetransformation.manage().window().maximize();
+
+				// Wait for the page to load
+				Thread.sleep(2000);
+
+				// Scroll
+				String script11111111 = "window.scrollBy(0,300);";
+				((JavascriptExecutor) driver).executeScript(script11111111);
+
+				// Locate the templates container
+				WebElement templatesContainer11111111 = Changetransformation.findElement(By.xpath("//*[@id=\"wrap\"]/div[2]/div[3]"));
+				
+				
+
+				System.out.println("Change and transformation: " + Changetransformation.getCurrentUrl());
+
+				// Find all template elements within the container
+				List<WebElement> templateElements11111111 = templatesContainer11111111.findElements(By.className("card-body"));
+
+				// Print the number of templates
+				System.out.println("Number of templates: " + templateElements11111111.size());
+				System.out.println("-----------------------------------------------");
+
+				// Print the names and URLs of the templates
+				for (WebElement template : templateElements11111111) {
+					// Find the element containing the template name
+					WebElement nameElement = template.findElement(By.className("card-title"));
+					String templateName = nameElement.getText();
+
+					// Find the element containing the template URL
+					WebElement urlElement = template.findElement(By.tagName("a"));
+					String templateURL = urlElement.getAttribute("href");
+
+					System.out.println("Template Name: " + templateName);
+					System.out.println("Template URL: " + templateURL);
+					System.out.println("-----------------------------------------------");
+				}
+
+				// Close the WebDriver instance
+				Changetransformation.quit();
+
+				
+				//-----------Coaching and performance----------------
+
+				WebDriverManager.chromedriver().setup();
+				WebDriver Coachingperformance = new ChromeDriver();
+				Coachingperformance.get("https://beta.drawify.com/templates/coaching-and-performance");
+				Coachingperformance.manage().window().maximize();
+
+				// Wait for the page to load
+				Thread.sleep(2000);
+
+				// Scroll
+				String script111111111 = "window.scrollBy(0,300);";
+				((JavascriptExecutor) driver).executeScript(script111111111);
+
+				// Locate the templates container
+				WebElement templatesContainer111111111 = Coachingperformance.findElement(By.xpath("//*[@id=\"wrap\"]/div[2]/div[3]"));
+				
+				
+
+				System.out.println("Coaching and performance: " + Coachingperformance.getCurrentUrl());
+
+				// Find all template elements within the container
+				List<WebElement> templateElements111111111 = templatesContainer111111111.findElements(By.className("card-body"));
+
+				// Print the number of templates
+				System.out.println("Number of templates: " + templateElements111111111.size());
+				System.out.println("-----------------------------------------------");
+
+				// Print the names and URLs of the templates
+				for (WebElement template : templateElements111111111) {
+					// Find the element containing the template name
+					WebElement nameElement = template.findElement(By.className("card-title"));
+					String templateName = nameElement.getText();
+
+					// Find the element containing the template URL
+					WebElement urlElement = template.findElement(By.tagName("a"));
+					String templateURL = urlElement.getAttribute("href");
+
+					System.out.println("Template Name: " + templateName);
+					System.out.println("Template URL: " + templateURL);
+					System.out.println("-----------------------------------------------");
+				}
+
+				// Close the WebDriver instance
+				Coachingperformance.quit();
+
+				
 		// ...........Community.................................
 		// .....................Drawifiers.................................
 
@@ -279,46 +563,110 @@ public class Print_All_Links_home {
 		// ...........Academy.................................
 		// .....................Webinars.................................
 
-		// Locate the dropdown menu and click on it to expand it
-		WebElement dropdown2 = driver.findElement(By.id("dropdown-community"));
-		dropdown2.click();
+		
+		// Locate the dropdown menu element
+        WebElement dropdownElement = driver.findElement(By.xpath("//*[@id=\"dropdown-community\"]"));
 
-		// Locate the Drawifiers within the dropdown and click on it
-		WebElement specificOptionD2o1 = driver.findElement(By.xpath("//*[@id=\"navbarCollapse\"]/ul/li[5]/div/a[1]"));
-		specificOptionD2o1.click();
+        // Using Select class for <select> elements
+        Select dropdown = new Select(dropdownElement);
+        
+        // Select option by visible text
+        dropdown.selectByVisibleText("Webinars");
+        
+        // Using Actions class for other dropdown menus
+        Actions actions = new Actions(driver);
+        
+        // Perform mouse over action to open the dropdown menu
+        actions.moveToElement(dropdownElement).perform();
+        
+        // Locate and click on the desired dropdown menu item
+        WebElement dropdownItem = driver.findElement(By.xpath("//*[@id=\"navbarCollapse\"]/ul/li[5]/div/a[1]"));
+        dropdownItem.click();
+		
+		
+     // Get the current URL of the page after navigating
+     		String currentUrl16 = driver.getCurrentUrl();
+     		System.out.println("Current URL after navigating: " + currentUrl16);
+     		driver.get(homePageUrl); // Navigate back to the home page
+		
+     		  WebElement dropdownElement1 = driver.findElement(By.xpath("//*[@id=\"dropdown-community\"]"));
 
-		// Get the current URL of the page after navigating
-		String currentUrl15 = driver.getCurrentUrl();
-		System.out.println("Current URL after navigating: " + currentUrl15);
-		driver.get(homePageUrl); // Navigate back to the home page
+     	        // Using Select class for <select> elements
+     	        Select dropdown11 = new Select(dropdownElement1);
+     	        
+     	        // Select option by visible text
+     	        dropdown11.selectByVisibleText("Webinars");
+     	        
+     	        // Using Actions class for other dropdown menus
+     	        Actions actions1 = new Actions(driver);
+     	        
+     	        // Perform mouse over action to open the dropdown menu
+     	        actions1.moveToElement(dropdownElement1).perform();
+     	        
+     	        // Locate and click on the desired dropdown menu item
+     	        WebElement dropdownItem1 = driver.findElement(By.xpath("//*[@id=\"navbarCollapse\"]/ul/li[5]/div/a[2]"));
+     	        dropdownItem1.click();
+     			
+     			
+     	     // Get the current URL of the page after navigating
+     	     		String currentUrl161 = driver.getCurrentUrl();
+     	     		System.out.println("Current URL after navigating: " + currentUrl161);
+     	     		driver.get(homePageUrl); // Navigate back to the home page
+		
+		
+     	     		
+     	     		
+     	     		
+     	     		
+//		
+//		// Locate the dropdown menu and click on it to expand it
+//		WebElement dropdown2 = driver.findElement(By.xpath("//*[@id=\"navbarCollapse\"]/ul/li[5]"));
+//		dropdown2.click();
+//
+//		// Locate the Webinar within the dropdown and click on it
+//		WebElement specificOptionD2o1 = driver.findElement(By.xpath("//*[@id=\"navbarCollapse\"]/ul/li[5]/div/a[1]"));
+//		specificOptionD2o1.click();
+//
+//		// Get the current URL of the page after navigating
+//		String currentUrl15 = driver.getCurrentUrl();
+//		System.out.println("Current URL after navigating: " + currentUrl15);
+//		driver.get(homePageUrl); // Navigate back to the home page
+//
+//		// .....................Tutorials.................................
+//		// Locate the dropdown menu and click on it to expand it
+//		WebElement dropdown2o1 = driver.findElement(By.xpath("//*[@id=\"navbarCollapse\"]/ul/li[5]"));
+//		dropdown2o1.click();
+//
+//		System.out.println("test1");
+//		// Locate the Tutorial within the dropdown and click on it
+//		WebElement specificOptionD2O2 = driver.findElement(By.xpath("//*[@id=\"navbarCollapse\"]/ul/li[5]/div/a[2]"));
+//		specificOptionD2O2.click();
+//
+//		// Get the current URL of the page after navigating
+//		String currentUrl16 = driver.getCurrentUrl();
+//		System.out.println("Current URL after navigating: " + currentUrl16);
+//		driver.get(homePageUrl); // Navigate back to the home page
+//
+//		// .....................ebook.................................
+//		// Locate the dropdown menu and click on it to expand it
+//		WebElement dropdown2o3 = driver.findElement(By.xpath("//*[@id=\"navbarCollapse\"]/ul/li[5]"));
+//		dropdown2o3.click();
+//
+//		// Locate the ebook within the dropdown and click on it
+//		WebElement specificOptionD2O3 = driver.findElement(By.xpath("//*[@id=\"navbarCollapse\"]/ul/li[5]/div/a[3]"));
+//		specificOptionD2O2.click();
+//		
+//		driver.findElement(By.xpath("//*[@id=\"wrap\"]/div[2]/div/div/div[3]/div/div")).click();
+//		//System.out.println("e book has been download successfully:");)
+//
+//		// Get the current URL of the page after navigating
+//		String currentUrl161 = driver.getCurrentUrl();
+//		System.out.println("Current URL after navigating: " + currentUrl161);
+//		driver.get(homePageUrl); // Navigate back to the home page
 
-		// .....................Tutorials.................................
-		// Locate the dropdown menu and click on it to expand it
-		WebElement dropdown2o1 = driver.findElement(By.id("dropdown-community"));
-		dropdown2o1.click();
-
-		// Locate the Drawifiers within the dropdown and click on it
-		WebElement specificOptionD2O2 = driver.findElement(By.xpath("//*[@id=\"navbarCollapse\"]/ul/li[5]/div/a[2]"));
-		specificOptionD2O2.click();
-
-		// Get the current URL of the page after navigating
-		String currentUrl16 = driver.getCurrentUrl();
-		System.out.println("Current URL after navigating: " + currentUrl16);
-		driver.get(homePageUrl); // Navigate back to the home page
-
-		// .....................ebook.................................
-		// Locate the dropdown menu and click on it to expand it
-		WebElement dropdown2o3 = driver.findElement(By.id("dropdown-community"));
-		dropdown2o1.click();
-
-		// Locate the Drawifiers within the dropdown and click on it
-		WebElement specificOptionD2O3 = driver.findElement(By.xpath("//*[@id=\"navbarCollapse\"]/ul/li[5]/div/a[3]"));
-		specificOptionD2O3.click();
-		// Get the current URL of the page after navigating
-		String currentUrl17 = driver.getCurrentUrl();
-		System.out.println("Current URL after navigating: " + currentUrl17);
-		driver.get(homePageUrl); // Navigate back to the home page
-
+		
+		
+		
 		// ...........Support.................................
 		driver.findElement(By.xpath("//*[@id=\"navbarCollapse\"]/ul/li[6]/a")).click();
 		String currentUrl8 = driver.getCurrentUrl();

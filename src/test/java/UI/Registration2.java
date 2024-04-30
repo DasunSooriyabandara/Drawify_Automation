@@ -7,23 +7,31 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.NoSuchElementException;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-public class Registration {
+public class Registration2 {
 
     public static void main(String[] args) throws InterruptedException {
         // Setup WebDriver for Temp-Mail website
         WebDriverManager.chromedriver().setup();
         WebDriver tempMailDriver = new ChromeDriver();
-        tempMailDriver.get("https://temp-mail.org/en/");
+        tempMailDriver.get("https://tempmail.plus/en/#!");
         tempMailDriver.manage().window().maximize();
-
+        
+        //refresh page to get random name
+        tempMailDriver.findElement(By.xpath("//*[@id=\"pre_rand\"]")).click();
+        
+        
+        
+        
         // Find and click the button to copy the email address to clipboard
-        WebElement copyButton = tempMailDriver.findElement(By.xpath("//*[@id=\"click-to-copy\"]"));
+        WebElement copyButton = tempMailDriver.findElement(By.xpath("//*[@id=\"pre_copy\"]"));
         copyButton.click();
 
         // Retrieve the email address
@@ -91,44 +99,84 @@ public class Registration {
 
         destinationDriver.manage().window().minimize();
 
-        // Setup WebDriver for mailtrap after verification mail send page
-//        WebDriver verificationDriver = new ChromeDriver();
-//        verificationDriver.get("https://temp-mail.org/en/");
-//        verificationDriver.manage().window().maximize();
+        
+        //--------------------------------------------------
+     // Setup WebDriver for destination page
+        WebDriverManager.chromedriver().setup();
+        WebDriver mailtrapDriver = new ChromeDriver();
+        mailtrapDriver.get("https://mailtrap.io/");
+        mailtrapDriver.manage().window().maximize();
 
         // Scroll vertically by 500 pixels
         String script = "window.scrollBy(0,300);";
         ((JavascriptExecutor) tempMailDriver).executeScript(script);
 
+//        FluentWait<WebDriver> wait11 = new FluentWait<>(mailtrapDriver)
+//                .pollingEvery(Duration.ofSeconds(1))
+//                .withTimeout(Duration.ofSeconds(10))
+//                .withMessage("Custom error message")
+//                .ignoring(NoSuchElementException.class);
+//        WebElement element1 = wait11.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\\\"CybotCookiebotDialogBodyButtonDecline\\\"]")));
+//        
+        //Accept cookies
+        //element1.click();
         
-        System.out.println("heloooo 1 ");
+      //Click login from dAshboard
+        mailtrapDriver.findElement(By.xpath("//*[@id=\"screen-reader-shortcut-header\"]/nav/div/div/div[2]/div[4]/a[1]")).click();
+        
+        
         
         // Wait for the email input field to be visible
 //        WebDriverWait wait1 = new WebDriverWait(tempMailDriver, Duration.ofSeconds(30));
 //        WebElement emailInput1 = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#tm-body > main > div:nth-child(1) > div > div.col-sm-12.col-md-12.col-lg-12.col-xl-8 > div.tm-content > div > div.inboxWarpMain > div > div.inbox-dataList > ul > li:nth-child(2) > div:nth-child(3) > div.m-link-view")));
-//        		
-        // Click on the expanded email
-//        emailInput1.click();
-        System.out.println("heloooo 2 ");
-        Thread.sleep(5000);
-  //-------------------------------------------------------------      
-        WebElement emailSubjectElement = tempMailDriver.findElement(By.xpath("//*[@id=\"tm-body\"]/main/div[1]/div/div[2]/div[2]/div/div[1]/div/div[4]/ul/li[2]/div[3]/div[2]/a"));
-        Thread.sleep(5000);
-        emailSubjectElement.click();
+//        	
         
-        System.out.println("heloooo 3 ");
+        String username = "ifonix.innovations@gmail.com";
+        String passwordMT = "1234!@#$Qw";
         
-     // Example: Extracting the email content
-        WebElement emailContentElement = tempMailDriver.findElement(By.xpath("//div[@class='col box']"));
-        String emailContent = emailContentElement.getText();
-        System.out.println("Email Content: " + emailContent);
         
-  //---------------------------------------------------------------      
-        // Click on the verification link
-        tempMailDriver.findElement(By.xpath("//*[@id=\"tm-body\"]/main/div[1]/div/div[2]/div[2]/div/div[1]/div/div[2]/div[3]/center/table/tbody/tr/td/table/tbody/tr[2]/td/table/tbody/tr/td/table[2]/tbody/tr/td/table/tbody/tr/td/a")).click();
+       // Login to mailtrap
+        //mailtrapDriver.findElement(By.xpath("//*[@id=\"signinTopBlock\"]/a[1]")).click();
+        
+        // Enter email address
+        mailtrapDriver.findElement(By.xpath("//*[@id=\"user_email\"]")).sendKeys(username);
+        //Click next button
+        mailtrapDriver.findElement(By.xpath("//*[@id=\"new_user\"]/div[3]")).click();
+        
+        // Enter password
+        mailtrapDriver.findElement(By.xpath("//*[@id=\"user_password\"]")).sendKeys(passwordMT);
+        //Click Login button
+        mailtrapDriver.findElement(By.xpath("//*[@id=\"new_user\"]/div[2]/div[3]")).click();
+        
+        //Click on email testing
+        mailtrapDriver.findElement(By.xpath("//*[@id=\"falconApp\"]/div/aside/nav/ul/li[2]/a")).click();
+        //Click on MY INBOX
+        mailtrapDriver.findElement(By.xpath("//*[@id=\"falconApp\"]/div/div[2]/div/div[3]/div/div[3]/div/div[1]")).click();
+      
+        //Refresh the page
+        mailtrapDriver.findElement(By.xpath("//*[@id=\"falconApp\"]/div/div[2]/div/div[1]/div[1]/div[2]/button[2]")).click();
+      
+        //open the email
+        mailtrapDriver.findElement(By.xpath(" //*[@id=\"falconApp\"]/div/div[2]/div/div[1]/div[2]/ul")).click();
+        
 
-        System.out.println("Successfully loaded the verification page.");
-
+        
+        
+        
+     
+     // Scroll
+		String script111111111 = "window.scrollBy(0,600);";
+		JavascriptExecutor driver = null;
+		((JavascriptExecutor) driver).executeScript(script111111111);
+		
+		
+		//click verify emaill button
+		mailtrapDriver.findElement(By.xpath(" //*[@id=\"templateBody\"]/table/tbody/tr/td/table[2]/tbody/tr/td/table/tbody/tr/td")).click();
+	
+		
+		System.out.println("email verification link/button clicked");
+        
+        
         // Quit drivers
         tempMailDriver.quit();
         destinationDriver.quit();
