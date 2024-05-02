@@ -7,9 +7,11 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.NoSuchElementException;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
@@ -21,9 +23,15 @@ public class Registration2 {
         WebDriver tempMailDriver = new ChromeDriver();
         tempMailDriver.get("https://tempmail.plus/en/#!");
         tempMailDriver.manage().window().maximize();
-
+        
+        //refresh page to get random name
+        tempMailDriver.findElement(By.xpath("//*[@id=\"pre_rand\"]")).click();
+        
+        
+        
+        
         // Find and click the button to copy the email address to clipboard
-        WebElement copyButton = tempMailDriver.findElement(By.id("pre_copy"));
+        WebElement copyButton = tempMailDriver.findElement(By.xpath("//*[@id=\"pre_copy\"]"));
         copyButton.click();
 
         // Retrieve the email address
@@ -31,16 +39,20 @@ public class Registration2 {
         System.out.println("Email pasted: " + email);
 
         // Setup WebDriver for destination page
+        WebDriverManager.chromedriver().setup();
         WebDriver destinationDriver = new ChromeDriver();
         destinationDriver.get("https://beta.drawify.com/auth/register");
         destinationDriver.manage().window().maximize();
 
         // Wait for the email input field to be visible
         WebDriverWait wait = new WebDriverWait(destinationDriver, Duration.ofSeconds(30));
-        WebElement emailInput = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("email")));
+        WebElement emailInput = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"email\"]")));
+
+        // Click cookies accept popup on the destination page
+        destinationDriver.findElement(By.xpath("/html/body/div[1]/div")).click();
 
         // Paste the email address from clipboard into the email input field
-        emailInput.sendKeys(Keys.CONTROL + "v");
+        emailInput.sendKeys(Keys.chord(Keys.CONTROL, "v"));
 
         // Retrieve the value of the email input field after pasting
         email = emailInput.getAttribute("value");
@@ -60,10 +72,10 @@ public class Registration2 {
         destinationDriver.findElement(By.xpath("//*[@id=\"register-from\"]/div[4]/div/button")).click();
 
         // Enter First Name
-        destinationDriver.findElement(By.id("first-name")).sendKeys("Automation Testing");
+        destinationDriver.findElement(By.xpath("//*[@id=\"first-name\"]")).sendKeys("Automation Testing");
 
         // Enter Last Name
-        destinationDriver.findElement(By.id("last-name")).sendKeys("a");
+        destinationDriver.findElement(By.xpath("//*[@id=\"last-name\"]")).sendKeys("a");
 
         // Enter strong password
         String strongPassword = "Test@2023";
@@ -77,7 +89,7 @@ public class Registration2 {
         destinationDriver.findElement(By.xpath("//*[@id=\"register-from\"]/div[6]/div[1]/button/div")).click();
 
         // Terms and conditions checkbox
-        destinationDriver.findElement(By.id("terms-conditions")).click();
+        destinationDriver.findElement(By.xpath("//*[@id=\"terms-conditions\"]")).click();
 
         // Click sign up button
         destinationDriver.findElement(By.xpath("//*[@id=\"register-from\"]/div[6]/div[1]/button/div")).click();
@@ -87,57 +99,104 @@ public class Registration2 {
 
         destinationDriver.manage().window().minimize();
 
-        // Setup WebDriver for Mailtrap page
+        
+     // Setup WebDriver for Mailtrap page
+        WebDriverManager.chromedriver().setup();
         WebDriver mailtrapDriver = new ChromeDriver();
         mailtrapDriver.get("https://mailtrap.io/");
         mailtrapDriver.manage().window().maximize();
 
+        // Scroll vertically by 300 pixels
+        String script = "window.scrollBy(0,300);";
+        ((JavascriptExecutor) mailtrapDriver).executeScript(script);
+
         // Accept cookies
-        WebDriverWait wait12 = new WebDriverWait(mailtrapDriver, Duration.ofSeconds(30));
-        WebElement acceptCookiesButton = wait12.until(ExpectedConditions.visibilityOfElementLocated(By.id("CybotCookiebotDialogBodyButtonAccept")));
+        WebDriverWait wait12 = new WebDriverWait(mailtrapDriver,Duration.ofSeconds(30));
+        WebElement acceptCookiesButton = wait12.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"CybotCookiebotDialogBodyButtonAccept\"]")));
         acceptCookiesButton.click();
 
+        
         // Click login from dashboard
         mailtrapDriver.findElement(By.xpath("//*[@id=\"screen-reader-shortcut-header\"]/nav/div/div/div[2]/div[4]/a[1]")).click();
 
+        
+        
+        // Wait for the email input field to be visible
+//        WebDriverWait wait1 = new WebDriverWait(tempMailDriver, Duration.ofSeconds(30));
+//        WebElement emailInput1 = wait1.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#tm-body > main > div:nth-child(1) > div > div.col-sm-12.col-md-12.col-lg-12.col-xl-8 > div.tm-content > div > div.inboxWarpMain > div > div.inbox-dataList > ul > li:nth-child(2) > div:nth-child(3) > div.m-link-view")));
+//        	
+        
+        //String username = "ifonix.innovations@gmail.com";
+        //String passwordMT = "1234!@#$Qw";
+        
+        
+        String script1 = "window.scrollBy(0,300);";
+        ((JavascriptExecutor) mailtrapDriver).executeScript(script1);
+        
         // Enter email address
         WebElement email1 = mailtrapDriver.findElement(By.xpath("//input[@type='email']"));
-        email1.sendKeys("ifonix.innovations@gmail.com");
-
-        // Click next button
+        email1.sendKeys("ifonix.innovations@gmail.com");	
+        //Click next button
         mailtrapDriver.findElement(By.xpath("//*[@id=\"new_user\"]/div[3]/a")).click();
-
-        // Enter Password
-        WebElement password1 = mailtrapDriver.findElement(By.id("user_password"));
+        
+        
+        
+        //Enter Password
+        //WebElement password1 = mailtrapDriver.findElement(By.cssSelector("#user_password"));
+       // password1.sendKeys("1234!@#$Qw");
+        
+        WebDriverWait wait1 = new WebDriverWait(mailtrapDriver, Duration.ofSeconds(30));
+        WebElement password1 = wait1.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#user_password")));
         password1.sendKeys("1234!@#$Qw");
-
-        // Click Login button
+        
+        
+        //Click Login button      
         mailtrapDriver.findElement(By.xpath("//input[@type='submit']")).click();
-
-        // Click on email testing
-        mailtrapDriver.findElement(By.xpath("//*[@id=\"falconApp\"]/div/aside/nav/ul/li[2]/a")).click();
-
-        // Click on MY INBOX
-        mailtrapDriver.findElement(By.xpath("//*[@id=\"falconApp\"]/div/div[2]/div/div[3]/div/div[3]/div/div[1]")).click();
-
-        // Refresh the page
+        
+        
+        WebDriverWait wait121 = new WebDriverWait(mailtrapDriver, Duration.ofSeconds(10));
+        WebElement inbox = wait121.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"falconApp\"]/div/div[2]/div/div/div[1]/div/div[2]/div/div[2]/div/div[1]/a")));
+        inbox.click();
+        
+        
+        //Click on MY INBOX testing
+        mailtrapDriver.findElement(By.xpath("//*[@id=\"falconApp\"]/div/div[2]/div/div[3]/div/div[3]/div/div[1]/span/a/span")).click();
+        //Click on MY INBOX
+        //mailtrapDriver.findElement(By.xpath("//*[@id=\"falconApp\"]/div/div[2]/div/div[3]/div/div[3]/div/div[1]")).click();
+      
+        //Refresh the page
         mailtrapDriver.findElement(By.xpath("//*[@id=\"falconApp\"]/div/div[2]/div/div[1]/div[1]/div[2]/button[2]")).click();
+      
+        
+     // Assuming you have already navigated to the inbox page
+     // Locate and click on the first email in the list
+     WebElement firstEmail = mailtrapDriver.findElement(By.xpath("//*[@id=\"falconApp\"]/div/div[2]/div/div[1]/div[2]/ul"));
+     firstEmail.click();
 
-        // Open the email
-        mailtrapDriver.findElement(By.xpath("//*[@id=\"falconApp\"]/div/div[2]/div/div[1]/div[2]/ul")).click();
+        
+        //open the email
+        mailtrapDriver.findElement(By.xpath(" //*[@id=\"falconApp\"]/div/div[2]/div/div[1]/div[2]/ul")).click();
+        
 
-        // Scroll
-        String script111111111 = "window.scrollBy(0,600);";
-        ((JavascriptExecutor) mailtrapDriver).executeScript(script111111111);
-
-        // Click verify email button
-        mailtrapDriver.findElement(By.xpath("//*[@id=\"templateBody\"]/table/tbody/tr/td/table[2]/tbody/tr/td/table/tbody/tr/td")).click();
-
-        System.out.println("email verification link/button clicked");
-
+        
+        
+        
+     
+     // Scroll
+		String script111111111 = "window.scrollBy(0,600);";
+		JavascriptExecutor driver = null;
+		((JavascriptExecutor) driver).executeScript(script111111111);
+		
+		
+		//click verify emaill button
+		mailtrapDriver.findElement(By.xpath(" //*[@id=\"templateBody\"]/table/tbody/tr/td/table[2]/tbody/tr/td/table/tbody/tr/td")).click();
+	
+		
+		System.out.println("email verification link/button clicked");
+        
+        
         // Quit drivers
         tempMailDriver.quit();
         destinationDriver.quit();
-        mailtrapDriver.quit();
     }
 }
