@@ -107,7 +107,7 @@ public class Registration2 {
         mailtrapDriver.manage().window().maximize();
 
         // Scroll vertically by 300 pixels
-        String script = "window.scrollBy(0,300);";
+        String script = "window.scrollBy(0,400);";
         ((JavascriptExecutor) mailtrapDriver).executeScript(script);
 
         
@@ -189,19 +189,23 @@ public class Registration2 {
      
      System.out.println("Successfully open the verification email :" +  mailtrapDriver.getCurrentUrl());
         
-     // Scroll vertically by 300 pixels
-     String script11 = "window.scrollBy(0,400);";
-     ((JavascriptExecutor) mailtrapDriver).executeScript(script11);
+     
        
      
      try {
     	    // Switch to the iframe
-    	    mailtrapDriver.switchTo().frame(0);
+    	    mailtrapDriver.switchTo().frame(2);
     	    System.out.println("Switched to iframe successfully");
+    	    
+    	 // Scroll vertically by 300 pixels
+    	     String script11 = "window.scrollBy(0,400);";
+    	     ((JavascriptExecutor) mailtrapDriver).executeScript(script11);
     	    
     	    // Wait for the email verification link/button to be clickable
     	    WebDriverWait wait111 = new WebDriverWait(mailtrapDriver, Duration.ofSeconds(60));
-    	    WebElement inboxItem1 = wait111.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"templateBody\"]/table/tbody/tr/td/table[2]/tbody/tr/td/table/tbody/tr/td/a")));
+    	    WebElement inboxItem1 = wait111.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"templateBody\"]/table/tbody/tr/td/table[3]/tbody/tr/td/table/tbody/tr[3]/td/div/span/span/u/a")));
+    	    
+    	    //mailtrapDriver.findElement(By.cssSelector("")).click();
     	    
     	    // Click the email verification link/button
     	    inboxItem1.click();
